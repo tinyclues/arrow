@@ -590,6 +590,7 @@ def dataframe_to_arrays(df, schema, preserve_index, nthreads=1, columns=None,
     metadata = construct_metadata(df, column_names, index_columns,
                                   index_descriptors, preserve_index,
                                   types)
+    metadata = dict(list(metadata.items()) + list(schema.metadata.items())) if schema.metadata else metadata
     schema = schema.with_metadata(metadata)
 
     return arrays, schema
